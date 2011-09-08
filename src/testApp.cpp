@@ -10,7 +10,8 @@ void testApp::setup(){
     for ( int i = 0 ; i <= 2 ; ++i ) 
     {
         mySphere sphere = mySphere() ; 
-        sphere.setSphereParmaters( 128, 128, 120 + 40 * i , ofRandom(0,0xFFFFFF) , i ) ;
+        ofVec3f color = ofVec3f ( ofRandom( .1 , 1 ) , ofRandom( .1 , 1 ) , ofRandom( .1 , 1 ) ) ; 
+        sphere.setSphereParmaters( 128, 128, 120 + 40 * i , color , i ) ;
         spheres.push_back( sphere ) ; 
     }
     
@@ -36,12 +37,12 @@ void testApp::draw()
         
         ofRotateX( mx * (float)(i+1) ) ; 
         ofRotateY( my * (float)(i+1) ) ; 
-        
+        ofScale( 100.0f , 100.0f , 100.0f ) ; 
         spheres[i].draw( ) ;
         
         ofPopMatrix();
     }
-    
+
 
     ofSetColor( 255 , 255 , 255 ) ; 
     ofDrawBitmapString( ofToString((int)ofGetFrameRate()) , 30 , ofGetHeight() - 60 ) ; 
